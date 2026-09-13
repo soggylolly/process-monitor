@@ -1,6 +1,6 @@
 import socket
 
-HOST = "127.0.0.1"  # Match server
+HOST = "192.168.99.223"   # VMs address from "ip addr"
 PORT = 9999  # Match server
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Same socket type as server

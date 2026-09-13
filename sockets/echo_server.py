@@ -1,6 +1,6 @@
 import socket
 
-HOST = "127.0.0.1"  # loops back to this machine only
+HOST = "0.0.0.0"  # loops back to this machine only
 PORT = 9999  # Port chosen thats unlikely to clash
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create socket using IPv4 addresses and TCP
@@ -12,16 +12,18 @@ server.listen(1)  # how many connections may queue
 
 print(f"Listening on {HOST}:{PORT}")
 
-conn, addr = server.accept()  # accept() blocks until client connects, returns a new socket for client through conn plus clients addres
-print(f"Connected by {addr}")
+while True: # keep serving clients forever
+    conn, addr = server.accept()  # accept() blocks until client connects, returns a new socket for client through conn plus clients addres
+    print(f"Connected by {addr}")
 
-with conn:  # closes conn automatically when block ends
-    while True:
-        data = conn.recv(1024)  # wait for up to 1024 bytes (Also blocks)
+    with conn:  # closes conn automatically when block ends
+        while True:
+            data = conn.recv(1024)  # wait for up to 1024 bytes (Also blocks)
 
-        if not data:  # If bytes are empty the client closed the connection
-            print("Client disconnected")
-            break
+            if not data:  # If bytes are empty the client closed the connection
+                print("Client disconnected")
+                break
 
-        print(f"Received: {data.decode()}")  # decode: bytes to text in order to print
-        conn.sendall(data)  # send the raw bytes straight back
+            print(f"Received: {data.decode()}")  # decode: bytes to text in order to print
+            conn.sendall(data)  # send the raw bytes straight back
+    print("Waiting for next client...")  # back round outer loop
