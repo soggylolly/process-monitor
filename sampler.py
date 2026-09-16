@@ -28,7 +28,7 @@ class ProcessSampler:
 
         readings = []        # Empty list before loop
 
-        for p in procs[:self.top_n]:   # only list TOP_N busiest processes
+        for p in procs[:self.top_n]:   # only list self.top_n busiest processes
             try:   # The process could vanish whilst being read
                 cpu = p.info['cpu_percent'] / self.cores  # Scales calcualtion of CPU % to match Task Manager
 
