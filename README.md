@@ -40,6 +40,6 @@ Windows 11 and a VirtualBox running Ubuntu. The same code runs on both without a
 
 - Socket clients address is hardcoded so needs to be edited by hand on each machine
 - No authentication or encryption on echo server meaning anything can connect
-- CPU and memory say nothign about network activity (Program could be uploading a file steadily using almost no CPU)
+- CPU and memory say nothing about network activity (Program could be uploading a file steadily using almost no CPU)
 - Web page writes a line to `samples.jsonl` every time it refreshes even if data isn't wanted
 - No automated tests
